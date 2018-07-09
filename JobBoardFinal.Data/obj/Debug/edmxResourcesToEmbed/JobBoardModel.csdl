@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JobBoardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OpenPositionID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsDeclined" Type="Boolean" Nullable="false" />
+    <Property Name="ResumeFilename" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="ManagerNotes" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OpenPosition" Relationship="Self.FK_Applications_OpenPosition" FromRole="Applications" ToRole="OpenPosition" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ManagerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StoreNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OpenPositions" Relationship="Self.FK_OpenPosition_Locations" FromRole="Locations" ToRole="OpenPosition" />
+  </EntityType>
+  <EntityType Name="OpenPosition">
+    <Key>
+      <PropertyRef Name="OpenPositionID" />
+    </Key>
+    <Property Name="OpenPositionID" Type="Int32" Nullable="false" />
+    <Property Name="PositionID" Type="Int32" Nullable="false" />
+    <Property Name="LocationID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_OpenPosition" FromRole="OpenPosition" ToRole="Applications" />
+    <NavigationProperty Name="Location" Relationship="Self.FK_OpenPosition_Locations" FromRole="OpenPosition" ToRole="Locations" />
+    <NavigationProperty Name="Position" Relationship="Self.FK_OpenPosition_Position" FromRole="OpenPosition" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionID" />
+    </Key>
+    <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pay" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="OpenPositions" Relationship="Self.FK_OpenPosition_Position" FromRole="Position" ToRole="OpenPosition" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ResumeFilename" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Applications_OpenPosition">
+    <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpenPosition">
+        <PropertyRef Name="OpenPositionID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="OpenPositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OpenPosition_Locations">
+    <End Role="Locations" Type="Self.Location" Multiplicity="1" />
+    <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="OpenPosition">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OpenPosition_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionID" />
+      </Principal>
+      <Dependent Role="OpenPosition">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JobBoardEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Applications" EntityType="Self.Application" />
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="OpenPositions" EntityType="Self.OpenPosition" />
+    <EntitySet Name="Positions" EntityType="Self.Position" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+    <AssociationSet Name="FK_Applications_OpenPosition" Association="Self.FK_Applications_OpenPosition">
+      <End Role="OpenPosition" EntitySet="OpenPositions" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OpenPosition_Locations" Association="Self.FK_OpenPosition_Locations">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="OpenPosition" EntitySet="OpenPositions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OpenPosition_Position" Association="Self.FK_OpenPosition_Position">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="OpenPosition" EntitySet="OpenPositions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

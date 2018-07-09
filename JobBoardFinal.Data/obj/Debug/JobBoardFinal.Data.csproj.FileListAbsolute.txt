@@ -1,0 +1,10 @@
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\JobBoardFinal.Data.dll.config
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\JobBoardFinal.Data.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\JobBoardFinal.Data.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\EntityFramework.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\EntityFramework.xml
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\obj\Debug\JobBoardFinal.Data.csprojResolveAssemblyReference.cache
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\obj\Debug\JobBoardFinal.Data.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.Data\obj\Debug\JobBoardFinal.Data.pdb
