@@ -67,3 +67,5 @@ C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoar
 C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.UI\obj\Debug\JobBoardFinal.UI.csprojResolveAssemblyReference.cache
 C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.UI\obj\Debug\JobBoardFinal.UI.dll
 C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.UI\obj\Debug\JobBoardFinal.UI.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.UI\bin\JobBoardFinal.Data.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoardFinal\src\JobBoardFinal.UI\bin\JobBoardFinal.Data.pdb

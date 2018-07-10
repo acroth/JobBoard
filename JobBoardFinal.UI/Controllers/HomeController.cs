@@ -2,6 +2,9 @@
 
 namespace JobBoardFinal.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Employee")]
     public class HomeController : Controller
     {
         public ActionResult Index()

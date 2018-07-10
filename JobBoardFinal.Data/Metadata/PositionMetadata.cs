@@ -18,7 +18,7 @@ namespace JobBoardFinal.Data//.Metadata
         public string Title { get; set; }
         [Required(ErrorMessage = "Please Enter a value")]
         public string Description { get; set; }
-        
+        [DataType(DataType.Currency)]
         public decimal Pay { get; set; }
 
     }
