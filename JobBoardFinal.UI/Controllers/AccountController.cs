@@ -21,7 +21,7 @@ namespace JobBoardFinal.UI.Controllers
 
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -158,21 +158,24 @@ namespace JobBoardFinal.UI.Controllers
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    UserManager.AddToRole(user.Id, "Employee");
                     ViewBag.Link = callbackUrl;
 
                     if (model.Passcode == "Manager")
                     {
 
                         UserManager.AddToRole(user.Id, "Manager");
-                        
+
                         //TODO FIX THIS!!! Role Logins
-                        
+
                     }
-                   
+                    else
+                    {
+                        UserManager.AddToRole(user.Id, "Employee");
+                    }
+
 
                     return View("DisplayEmail");
-                   
+
 
                 }
                 if (ModelState.IsValid)
