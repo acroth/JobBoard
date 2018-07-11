@@ -13,9 +13,7 @@ using JobBoardFinal.Data;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Manager")]
-    [Authorize(Roles = "Employee")]
+    [Authorize(Roles = "Admin,Manager,Employee")]
     public class AccountController : Controller
     {
         public AccountController()
@@ -160,8 +158,21 @@ namespace JobBoardFinal.UI.Controllers
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    UserManager.AddToRole(user.Id, "Employee");
                     ViewBag.Link = callbackUrl;
+
+                    if (model.Passcode == "Manager")
+                    {
+
+                        UserManager.AddToRole(user.Id, "Manager");
+                        
+                        //TODO FIX THIS!!! Role Logins
+                        
+                    }
+                   
+
                     return View("DisplayEmail");
+                   
 
                 }
                 if (ModelState.IsValid)

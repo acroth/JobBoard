@@ -10,9 +10,7 @@ using JobBoardFinal.Data;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Manager")]
-    [Authorize(Roles = "Employee")]
+    [Authorize(Roles = "Admin,Manager,Employee")]
     public class ApplicationsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
