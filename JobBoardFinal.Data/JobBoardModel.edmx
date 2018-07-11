@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JobBoardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JobBoardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applications">
           <Key>
             <PropertyRef Name="ApplicationID" />
@@ -65,6 +65,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Locations_UserDetails">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+          <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Locations">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OpenPosition_Locations">
           <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
           <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="*" />
@@ -99,6 +111,10 @@
             <End Role="OpenPosition" EntitySet="OpenPosition" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
+          <AssociationSet Name="FK_Locations_UserDetails" Association="Self.FK_Locations_UserDetails">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Locations" EntitySet="Locations" />
+          </AssociationSet>
           <AssociationSet Name="FK_OpenPosition_Locations" Association="Self.FK_OpenPosition_Locations">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="OpenPosition" EntitySet="OpenPosition" />
@@ -108,8 +124,7 @@
             <End Role="OpenPosition" EntitySet="OpenPosition" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JobBoardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -136,6 +151,7 @@
           <Property Name="ManagerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StoreNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="OpenPositions" Relationship="Self.FK_OpenPosition_Locations" FromRole="Locations" ToRole="OpenPosition" />
+          <NavigationProperty Name="UserDetail" Relationship="JobBoardModel.FK_Locations_UserDetails" FromRole="Location" ToRole="UserDetail" />
         </EntityType>
         <EntityType Name="OpenPosition">
           <Key>
@@ -166,6 +182,7 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ResumeFilename" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Locations" Relationship="JobBoardModel.FK_Locations_UserDetails" FromRole="UserDetail" ToRole="Location" />
         </EntityType>
         <Association Name="FK_Applications_OpenPosition">
           <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="1" />
@@ -221,7 +238,23 @@
             <End Role="Position" EntitySet="Positions" />
             <End Role="OpenPosition" EntitySet="OpenPositions" />
           </AssociationSet>
+          <AssociationSet Name="FK_Locations_UserDetails" Association="JobBoardModel.FK_Locations_UserDetails">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Locations_UserDetails">
+          <End Type="JobBoardModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+          <End Type="JobBoardModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoardFinal.Data;
+using Microsoft.AspNet.Identity;
 
 namespace JobBoardFinal.UI.Controllers
 {
@@ -114,6 +115,13 @@ namespace JobBoardFinal.UI.Controllers
             db.Positions.Remove(position);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult ManagersPositions()
+        {
+            
+            var positions = db.Locations.Where(x => x.ManagerID == User.Identity.GetUserId());
+
+            return View(db.Positions.ToList());
         }
 
         protected override void Dispose(bool disposing)

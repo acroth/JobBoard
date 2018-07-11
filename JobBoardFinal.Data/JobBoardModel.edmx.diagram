@@ -13,6 +13,7 @@
         <AssociationConnector Association="JobBoardModel.FK_Applications_OpenPosition" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="JobBoardModel.FK_Locations_UserDetails" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

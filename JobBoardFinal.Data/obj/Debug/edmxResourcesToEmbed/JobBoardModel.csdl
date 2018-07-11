@@ -23,6 +23,7 @@
     <Property Name="ManagerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StoreNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="OpenPositions" Relationship="Self.FK_OpenPosition_Locations" FromRole="Locations" ToRole="OpenPosition" />
+    <NavigationProperty Name="UserDetail" Relationship="JobBoardModel.FK_Locations_UserDetails" FromRole="Location" ToRole="UserDetail" />
   </EntityType>
   <EntityType Name="OpenPosition">
     <Key>
@@ -53,6 +54,7 @@
     <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ResumeFilename" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Locations" Relationship="JobBoardModel.FK_Locations_UserDetails" FromRole="UserDetail" ToRole="Location" />
   </EntityType>
   <Association Name="FK_Applications_OpenPosition">
     <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="1" />
@@ -108,5 +110,21 @@
       <End Role="Position" EntitySet="Positions" />
       <End Role="OpenPosition" EntitySet="OpenPositions" />
     </AssociationSet>
+    <AssociationSet Name="FK_Locations_UserDetails" Association="JobBoardModel.FK_Locations_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Locations_UserDetails">
+    <End Type="JobBoardModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="JobBoardModel.Location" Role="Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

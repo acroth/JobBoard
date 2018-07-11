@@ -10,7 +10,6 @@ using JobBoardFinal.Data;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    [Authorize(Roles = "Admin,Manager,Employee")]
     public class LocationsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
@@ -18,7 +17,8 @@ namespace JobBoardFinal.UI.Controllers
         // GET: Locations
         public ActionResult Index()
         {
-            return View(db.Locations.ToList());
+            var locations = db.Locations.Include(l => l.UserDetail);
+            return View(locations.ToList());
         }
 
         // GET: Locations/Details/5
@@ -39,6 +39,7 @@ namespace JobBoardFinal.UI.Controllers
         // GET: Locations/Create
         public ActionResult Create()
         {
+            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserId", "FirstName");
             return View();
         }
 
@@ -56,6 +57,7 @@ namespace JobBoardFinal.UI.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserId", "FirstName", location.ManagerID);
             return View(location);
         }
 
@@ -71,6 +73,7 @@ namespace JobBoardFinal.UI.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserId", "FirstName", location.ManagerID);
             return View(location);
         }
 
@@ -87,6 +90,7 @@ namespace JobBoardFinal.UI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserId", "FirstName", location.ManagerID);
             return View(location);
         }
 

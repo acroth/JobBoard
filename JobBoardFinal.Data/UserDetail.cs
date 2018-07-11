@@ -14,9 +14,18 @@ namespace JobBoardFinal.Data
     
     public partial class UserDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserDetail()
+        {
+            this.Locations = new HashSet<Location>();
+        }
+    
         public string UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ResumeFilename { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations { get; set; }
     }
 }

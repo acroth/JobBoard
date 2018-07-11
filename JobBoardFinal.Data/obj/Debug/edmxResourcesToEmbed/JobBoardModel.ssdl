@@ -60,6 +60,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Locations_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Locations">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OpenPosition_Locations">
     <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
     <End Role="OpenPosition" Type="Self.OpenPosition" Multiplicity="*" />
@@ -93,6 +105,10 @@
     <AssociationSet Name="FK_Applications_OpenPosition" Association="Self.FK_Applications_OpenPosition">
       <End Role="OpenPosition" EntitySet="OpenPosition" />
       <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_UserDetails" Association="Self.FK_Locations_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="Locations" EntitySet="Locations" />
     </AssociationSet>
     <AssociationSet Name="FK_OpenPosition_Locations" Association="Self.FK_OpenPosition_Locations">
       <End Role="Locations" EntitySet="Locations" />
