@@ -155,12 +155,18 @@ namespace JobBoardFinal.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
+                    UserDetail newUserDeets = new UserDetail();
+                    newUserDeets.UserId = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+                    newUserDeets.ResumeFilename = model.ResumeFilename;//TODO: handle file upload
 
-                    if (model.Passcode == "Manager")
+                    JobBoardEntities db = new JobBoardEntities();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
+
+
+                    if (model.Passcode.ToLower() == "manager")
                     {
 
                         UserManager.AddToRole(user.Id, "Manager");
@@ -174,22 +180,17 @@ namespace JobBoardFinal.UI.Controllers
                     }
 
 
+
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    ViewBag.Link = callbackUrl;
+
                     return View("DisplayEmail");
 
 
                 }
-                if (ModelState.IsValid)
-                {
-                    UserDetail newUserDeets = new UserDetail();
-                    newUserDeets.UserId = user.Id;
-                    newUserDeets.FirstName = model.FirstName;
-                    newUserDeets.LastName = model.LastName;
-                    newUserDeets.ResumeFilename = model.ResumeFilename;//TODO: handle file upload
-
-                    JobBoardEntities db = new JobBoardEntities();
-                    db.UserDetails.Add(newUserDeets);
-                    db.SaveChanges();
-                }
+                
                 AddErrors(result);
             }
 
