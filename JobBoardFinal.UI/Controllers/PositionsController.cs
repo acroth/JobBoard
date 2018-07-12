@@ -19,7 +19,8 @@ namespace JobBoardFinal.UI.Controllers
         // GET: Positions
         public ActionResult Index()
         {
-            return View(db.Positions.ToList());
+                return View(db.Positions.ToList());
+            
         }
 
         // GET: Positions/Details/5
@@ -118,10 +119,14 @@ namespace JobBoardFinal.UI.Controllers
         }
         public ActionResult ManagersPositions()
         {
+            //var positions = db.Locations.Where(x => x.ManagerID == User.Identity.GetUserId());
+            //var mgrPositions = db.Positions.Join(db.OpenPositions, p => p.PositionID, l => l.PositionID,(p,l) =
             
-            var positions = db.Locations.Where(x => x.ManagerID == User.Identity.GetUserId());
 
-            return View(db.Positions.ToList());
+
+            
+            return View(mgrPositions);
+
         }
 
         protected override void Dispose(bool disposing)
