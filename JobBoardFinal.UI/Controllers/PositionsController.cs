@@ -117,17 +117,6 @@ namespace JobBoardFinal.UI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult ManagersPositions()
-        {
-            //var positions = db.Locations.Where(x => x.ManagerID == User.Identity.GetUserId());
-            //var mgrPositions = db.Positions.Join(db.OpenPositions, p => p.PositionID, l => l.PositionID,(p,l) =
-            
-
-
-            
-            return View(mgrPositions);
-
-        }
 
         protected override void Dispose(bool disposing)
         {

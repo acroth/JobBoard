@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoardFinal.Data;
+using Microsoft.AspNet.Identity;
 
 namespace JobBoardFinal.UI.Controllers
 {
@@ -18,6 +19,12 @@ namespace JobBoardFinal.UI.Controllers
         // GET: Applications
         public ActionResult Index()
         {
+            if (User.IsInRole("Manager"))
+            {
+                string myUserID = User.Identity.GetUserId();
+                var mgrApplications = db.Applications.Include(a => a.OpenPosition).Where(a => a.OpenPosition.Location.ManagerID == myUserID);
+                return View(mgrApplications.ToList());
+            }
             var applications = db.Applications.Include(a => a.OpenPosition);
             return View(applications.ToList());
         }

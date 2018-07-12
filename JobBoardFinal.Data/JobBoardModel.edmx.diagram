@@ -14,6 +14,10 @@
         <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Position" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Locations_UserDetails" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetRole" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetUser" Width="1.5" PointX="0.75" PointY="8.125" />
+        <AssociationConnector Association="JobBoardModel.FK_UserDetails_AspNetUsers" />
+        <AssociationConnector Association="JobBoardModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
