@@ -17,6 +17,7 @@ namespace JobBoardFinal.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserDetail()
         {
+            this.Applications = new HashSet<Application>();
             this.Locations = new HashSet<Location>();
         }
     
@@ -26,7 +27,9 @@ namespace JobBoardFinal.Data
         public string ResumeFilename { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Location> Locations { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations { get; set; }
     }
 }

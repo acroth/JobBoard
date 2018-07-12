@@ -6,7 +6,7 @@
     </Key>
     <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OpenPositionID" Type="int" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ApplicationDate" Type="date" Nullable="false" />
     <Property Name="IsDeclined" Type="bit" Nullable="false" />
     <Property Name="ResumeFilename" Type="varchar" MaxLength="75" />
@@ -58,7 +58,7 @@
     <Key>
       <PropertyRef Name="OpenPositionID" />
     </Key>
-    <Property Name="OpenPositionID" Type="int" Nullable="false" />
+    <Property Name="OpenPositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PositionID" Type="int" Nullable="false" />
     <Property Name="LocationID" Type="int" Nullable="false" />
   </EntityType>
@@ -89,6 +89,18 @@
       </Principal>
       <Dependent Role="Applications">
         <PropertyRef Name="OpenPositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Applications_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -179,6 +191,10 @@
     <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Applications_OpenPosition" Association="Self.FK_Applications_OpenPosition">
       <End Role="OpenPosition" EntitySet="OpenPosition" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applications_UserDetails" Association="Self.FK_Applications_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
       <End Role="Applications" EntitySet="Applications" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">

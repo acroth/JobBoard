@@ -19,9 +19,9 @@ namespace JobBoardFinal.UI.Controllers
         // GET: OpenPositions
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated && User.IsInRole("Manager"))
+            if (User.IsInRole("Manager"))
             {
-                string myUserID = User.Identity.Name;
+                string myUserID = User.Identity.GetUserId().ToUpper();
                 var mgrOpenPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position).Where(x => x.Location.ManagerID == myUserID);
                 return View(mgrOpenPositions.ToList());
 

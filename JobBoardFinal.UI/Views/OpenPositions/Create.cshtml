@@ -15,13 +15,14 @@
         <h4>OpenPosition</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        @*REMOVED BECAUSE IT AUTO-INCREMENTS NOW
+            <div class="form-group">
             @Html.LabelFor(model => model.OpenPositionID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.OpenPositionID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.OpenPositionID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PositionID, "PositionID", htmlAttributes: new { @class = "control-label col-md-2" })

@@ -166,19 +166,25 @@ namespace JobBoardFinal.UI.Controllers
                     db.SaveChanges();
 
 
-                    if (model.Passcode.ToLower() == "manager")
+                    if (!String.IsNullOrEmpty(model.Passcode))
                     {
+                        if (model.Passcode.ToLower() == "manager")
+                        {
 
-                        UserManager.AddToRole(user.Id, "Manager");
+                            UserManager.AddToRole(user.Id, "Manager");
 
-                        //TODO FIX THIS!!! Role Logins
+                            //TODO FIX THIS!!! Role Logins
 
+                        }
+                        else
+                        {
+                            UserManager.AddToRole(user.Id, "Employee");
+                        }
                     }
                     else
                     {
                         UserManager.AddToRole(user.Id, "Employee");
                     }
-
 
 
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -190,7 +196,7 @@ namespace JobBoardFinal.UI.Controllers
 
 
                 }
-                
+
                 AddErrors(result);
             }
 

@@ -16,12 +16,13 @@ namespace JobBoardFinal.Data
     {
         public int ApplicationID { get; set; }
         public int OpenPositionID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public System.DateTime ApplicationDate { get; set; }
         public bool IsDeclined { get; set; }
         public string ResumeFilename { get; set; }
         public string ManagerNotes { get; set; }
     
         public virtual OpenPosition OpenPosition { get; set; }
+        public virtual UserDetail UserDetail { get; set; }
     }
 }

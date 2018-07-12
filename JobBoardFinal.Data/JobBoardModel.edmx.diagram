@@ -5,20 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0c6766a21fd346f4a881904fb1de92cb" Name="Diagram1">
-        <EntityTypeShape EntityType="JobBoardModel.Application" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.Location" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.OpenPosition" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JobBoardModel.Position" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.UserDetail" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="JobBoardModel.FK_Applications_OpenPosition" ManuallyRouted="false" />
-        <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Locations" ManuallyRouted="false" />
-        <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Position" ManuallyRouted="false" />
-        <AssociationConnector Association="JobBoardModel.FK_Locations_UserDetails" />
-        <EntityTypeShape EntityType="JobBoardModel.AspNetRole" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="JobBoardModel.AspNetUser" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="JobBoardModel.Application" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetRole" Width="1.5" PointX="0.75" PointY="13.125" />
+        <EntityTypeShape EntityType="JobBoardModel.Location" Width="1.5" PointX="5.25" PointY="12.25" />
+        <EntityTypeShape EntityType="JobBoardModel.OpenPosition" Width="1.5" PointX="7.5" PointY="8.875" />
+        <EntityTypeShape EntityType="JobBoardModel.UserDetail" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="JobBoardModel.FK_Applications_OpenPosition" />
+        <AssociationConnector Association="JobBoardModel.FK_Applications_UserDetails" />
         <AssociationConnector Association="JobBoardModel.FK_UserDetails_AspNetUsers" />
+        <AssociationConnector Association="JobBoardModel.FK_Locations_UserDetails" />
+        <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Locations" />
+        <AssociationConnector Association="JobBoardModel.FK_OpenPosition_Position" />
         <AssociationConnector Association="JobBoardModel.AspNetUserRoles" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

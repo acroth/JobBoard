@@ -21,7 +21,7 @@ namespace JobBoardFinal.UI.Controllers
         {
             if (User.IsInRole("Manager"))
             {
-                string myUserID = User.Identity.GetUserId();
+                string myUserID = User.Identity.GetUserId().ToUpper();
                 var mgrApplications = db.Applications.Include(a => a.OpenPosition).Where(a => a.OpenPosition.Location.ManagerID == myUserID);
                 return View(mgrApplications.ToList());
             }
