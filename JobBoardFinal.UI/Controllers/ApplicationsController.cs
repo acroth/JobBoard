@@ -25,6 +25,7 @@ namespace JobBoardFinal.UI.Controllers
                 var mgrApplications = db.Applications.Include(a => a.OpenPosition).Where(a => a.OpenPosition.Location.ManagerID == myUserID);
                 return View(mgrApplications.ToList());
             }
+            
             var applications = db.Applications.Include(a => a.OpenPosition);
             return View(applications.ToList());
         }
@@ -84,7 +85,7 @@ namespace JobBoardFinal.UI.Controllers
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }
-
+        
         // POST: Applications/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

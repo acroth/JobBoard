@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<JobBoardFinal.Data.OpenPosition>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Openings";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,7 +23,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Location.City)
@@ -29,11 +33,13 @@
             @Html.DisplayFor(modelItem => item.Position.Title)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OpenPositionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OpenPositionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OpenPositionID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID })
         </td>
     </tr>
 }
+   
 
 </table>
+}

@@ -59,6 +59,7 @@ namespace JobBoardFinal.UI.Controllers
             }
 
             return View(position);
+
         }
 
         // GET: Positions/Edit/5

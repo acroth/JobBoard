@@ -12,6 +12,7 @@ using System.Web.Security;
 
 namespace JobBoardFinal.UI.Controllers
 {
+    [Authorize (Roles = "Admin,Manager,Employee")]
     public class OpenPositionsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
@@ -53,9 +54,20 @@ namespace JobBoardFinal.UI.Controllers
         // GET: OpenPositions/Create
         public ActionResult Create()
         {
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City");
-            ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
-            return View();
+            if (User.IsInRole("Manager"))
+            {
+                string myUserID = User.Identity.GetUserId().ToUpper();
+                var mgrLocations = db.Locations.Where(l => l.ManagerID == myUserID);
+                ViewBag.LocationID = new SelectList(mgrLocations, "LocationID", "City");
+                ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
+                return View();
+            }
+            else
+            {
+                ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City");
+                ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
+                return View();
+            }
         }
 
         // POST: OpenPositions/Create
@@ -65,16 +77,37 @@ namespace JobBoardFinal.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OpenPositionID,PositionID,LocationID")] OpenPosition openPosition)
         {
-            if (ModelState.IsValid)
+            if (User.IsInRole("Manager"))
             {
-                db.OpenPositions.Add(openPosition);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.OpenPositions.Add(openPosition);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                string myUserID = User.Identity.GetUserId().ToUpper();
+                var mgrLocations = db.Locations.Where(l => l.ManagerID == myUserID);
+                ViewBag.LocationID = new SelectList(mgrLocations, "LocationID","City",openPosition.LocationID);
+                ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
+                return View(openPosition);
+
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.OpenPositions.Add(openPosition);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City", openPosition.LocationID);
+                ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
+                return View(openPosition);
             }
 
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City", openPosition.LocationID);
-            ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
-            return View(openPosition);
+
         }
 
         // GET: OpenPositions/Edit/5
@@ -106,13 +139,6 @@ namespace JobBoardFinal.UI.Controllers
                 db.Entry(openPosition).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            if (User.IsInRole("Manager"))
-            {
-                string myUserId = User.Identity.GetUserId();
-                var mgrLocations = db.Locations.Where(l => l.ManagerID == myUserId);
-                string mgrLocationsString = 
-                ViewBag.LocationID = new SelectList(db.Locations,"LocationId","StoreNumber",mgrLocations);
             }
 
             ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City", openPosition.LocationID);

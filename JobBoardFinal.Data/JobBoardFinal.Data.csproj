@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Metadata\ApplicationMetadata.cs" />
     <Compile Include="Metadata\LocationMetadata.cs" />
+    <Compile Include="Metadata\OpenPositionMetadata.cs" />
     <Compile Include="Metadata\PositionMetadata.cs" />
     <Compile Include="Metadata\UserDetailMetadata.cs" />
     <Compile Include="OpenPosition.cs">
