@@ -12,7 +12,7 @@ using System.Web.Security;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    [Authorize (Roles = "Admin,Manager,Employee")]
+    //[Authorize (Roles = "Admin,Manager,Employee")]
     public class OpenPositionsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
@@ -170,6 +170,23 @@ namespace JobBoardFinal.UI.Controllers
             OpenPosition openPosition = db.OpenPositions.Find(id);
             db.OpenPositions.Remove(openPosition);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Apply([Bind(Include = "OpenPositionID,UserID,ApplicationDate,isDeclined,ResumeFilename")] Application app,int openPosition)
+        {
+            var myUserID = User.Identity.GetUserId().ToUpper();
+            app.UserID = myUserID;
+            app.OpenPositionID = openPosition;
+            app.ApplicationDate = DateTime.Now;
+            app.ResumeFilename = "";
+            app.IsDeclined = false;
+            db.Applications.Add(app);
+            db.SaveChanges();
+            
             return RedirectToAction("Index");
         }
 

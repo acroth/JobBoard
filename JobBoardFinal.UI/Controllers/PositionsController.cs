@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    [Authorize(Roles = "Admin,Manager,Employee")]
+    [Authorize(Roles = "Admin,Manager")]
     public class PositionsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
