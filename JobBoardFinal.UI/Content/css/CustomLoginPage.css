@@ -1,24 +1,27 @@
 ﻿
 body {
     height: 100%;
-    background-image: url('../Img/abstract-grey-tech-geometric-motion-background-video-corporate-animation-ultra-hd-4k-3840x2160_b4-2cnvd__F0000.png');
+    background-image: url('../Img/technology-blue-tech-background-with-shining-abstract_29865-24.jpg');
     background-size: cover;
+    background-attachment: fixed;
 }
 #py-5 bg-dark{
-    position: fixed;
+    position:sticky;
     width: 100%;
     height:10px;
-    background: #6cf !important;
+    background: #498CC5 !important;
     vertical-align: baseline;
 
+
 }
+
 #login{
     color: white;
     text-align:center;
     background: rgba(25, 25, 25,.85);
-    -webkit-box-shadow: 10px 10px 6px -6px #555;
-    -moz-box-shadow: 10px 10px 6px -6px #555;
-    box-shadow: 10px 10px 6px -6px #555;
+    -webkit-box-shadow: 0px 10px 6px -6px #252525;
+    -moz-box-shadow: 0px 10px 6px -6px #252525;
+    box-shadow: 0px 10px 6px -6px #252525;
     margin-top:5%;
     width: 40%;
     border-radius: 25px;

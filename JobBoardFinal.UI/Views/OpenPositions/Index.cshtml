@@ -8,47 +8,94 @@
 
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position.Title)
-        </th>
-        <th></th>
-    </tr>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </th>
+            <th></th>
+        </tr>*@
+<div class="row">
+    @foreach (var item in Model)
+    {
+        // <tr>
+        // <td>
+        //   @Html.DisplayFor(modelItem => item.Location.City)
+        //</td>
+        //<td>
+        // @Html.DisplayFor(modelItem => item.Position.Title)
+        //</td>
+        //<td>
+        // @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
+        //@Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
+        //@Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID })
+        //@using (Html.BeginForm("Apply", "OpenPositions", FormMethod.Post))
+        //{
+        //@Html.AntiForgeryToken()
+        //<input type="hidden" name="openPosition" value="@item.OpenPositionID" />
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position.Title)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) 
-            @*@Html.ActionLink("Apply", "Apply","OpenPositions",)*@
-            @using (Html.BeginForm("Apply", "OpenPositions", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="openPosition" value="@item.OpenPositionID" />
+        //<input type="submit" class="btn btn-danger" value="Click to Apply" />
+        //}
 
-                <input type="submit" class="btn btn-danger" value="Click to Apply" />
-            }
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.DisplayFor(modelItem => item.Position.Title)
+                    </h4>
+                    <h5 class="card-title">
+                        <em>
+                            @Html.DisplayFor(modelItem => item.Location.City), @Html.DisplayFor(modelItem => item.Location.State)
+                        </em>
+                    </h5>
+                    <h6>
+                        <em>
+                            @Html.DisplayFor(modelItem => item.Position.Pay)/hr
+                        </em>
+                    </h6>
+                    <p class="card-text">
+                        @Html.DisplayFor(modelItem => item.Position.Description)
+                    </p>
+                    <p>
+                        @if (User.IsInRole("Employee"))
+                        {
+                            using (Html.BeginForm("Apply", "OpenPositions", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="openPosition" value="@item.OpenPositionID" />
+
+                                <input type="submit" class="btn btn-danger" value="Click to Apply" />
+                            }
+
+                        }
+
+                    </p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
+                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) @:|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID })
+
+
+                    }
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                </div>
+            </div>
+        </div>
 
 
 
-        </td>
-    </tr>
-}
-   
-
-</table>
+                        // </td>
+                        //</tr>
+                    }
+</div>
+@*</table>*@

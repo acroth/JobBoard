@@ -5,7 +5,11 @@
  */
 
 body {
-  padding-top: 54px;
+    padding-top: 54px;
+    background-image: url('../Img/technology-blue-tech-background-with-shining-abstract_29865-24.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+
 }
 
 @media (min-width: 992px) {
@@ -18,9 +22,9 @@ body {
   height: 65vh;
   min-height: 300px;
   background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover; 
+  -o-background-size: cover;*/
   background-size: cover;
 }
 
