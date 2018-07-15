@@ -190,7 +190,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\CustomLoginPage.css" />
     <Content Include="Content\css\modern-business.css" />
+    <Content Include="Content\Img\abstract-grey-tech-geometric-motion-background-video-corporate-animation-ultra-hd-4k-3840x2160_b4-2cnvd__F0000.png" />
+    <Content Include="Content\Img\AR ELECTRONICS.jpg" />
+    <Content Include="Content\Img\christopher-burns-286419-unsplash.jpg" />
+    <Content Include="Content\Img\norbert-levajsics-203627-unsplash.jpg" />
+    <Content Include="Content\Img\Power Button.jpg" />
     <Content Include="Content\js\contact_me.js" />
     <Content Include="Content\js\jqBootstrapValidation.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
