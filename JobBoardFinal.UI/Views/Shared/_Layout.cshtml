@@ -1,4 +1,5 @@
 ﻿<head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -8,12 +9,22 @@
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="~/Content/css/modern-business.css" rel="stylesheet">
+    <!--My Custom Styles for Navbar and footer-->
+    <link href="~/Content/css/NavbarFooterCustom.css" rel="stylesheet" />
+    <!--Datatables-->
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" >@Html.ActionLink("AR Electronics","Index","Home")</a>
+            <a  class="navbar-brand" href="@Url.Action("Index","Index")" >
+                <img id="homeLogo" src="~/Content/Img/AR ELECTRONICS.jpg" />
+            </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,20 +32,32 @@
                 <ul class="navbar-nav ml-auto">
                     @Html.Partial("_LoginPartial")
                     <li class="nav-item">
-                        <a class="nav-link" >@Html.ActionLink("Open Positions", "Index", "OpenPositions")</a>
+                        @Html.ActionLink("Openings", "Index", "OpenPositions", null, new { @class = "nav-item" })
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+
+                            @Html.ActionLink("Positions", "Index", "Positions", null, new { @class = "nav-item" })
+                        </li>
+
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Locations", "Index", "Locations", null, new { @class = "nav-item" })
+                        </li>
+
+                    }
+                    <li class="nav-item">
+                        @Html.ActionLink("Applications", "Index", "Applications", null, new { @class = "nav-item" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">@Html.ActionLink("Positions", "Index", "Positions")</a>
+                        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-item" })
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">@Html.ActionLink("Locations", "Index", "Locations")</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">@Html.ActionLink("Applications", "Index", "Applications")</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">@Html.ActionLink("Contact", "Contact", "Home")</a>
-                    </li>
+
+
+
 
 
 
@@ -72,16 +95,17 @@
                             <a class="dropdown-item" href="404.html">404</a>
                             <a class="dropdown-item" href="pricing.html">Pricing Table</a>
                         </div>*@
-                    </li>
+                    @*</li>*@
                 </ul>
             </div>
         </div>
     </nav>
     @RenderBody()
+    <div style="clear:both;"></div>
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer id="footer" class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Alexander Roth 2018</p>
         </div>
         <!-- /.container -->
     </footer>

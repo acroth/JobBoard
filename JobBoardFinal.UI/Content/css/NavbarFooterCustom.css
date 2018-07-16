@@ -1,0 +1,65 @@
+﻿.navbar-nav ml-auto{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+.nav-item{
+    display:table-row;
+    color:white;
+    padding: 15px;
+    overflow:hidden;
+    white-space: nowrap;
+
+}
+
+.navbar-brand{
+    display:block;
+    padding: 8px;
+    color:white;
+    padding:14px 16px;
+    text-decoration: none;
+    background-color: #343A40;
+}
+
+.navbar-nav ml-auto{
+    background-color:#343A40;
+}
+
+.nav-item a:hover{
+    color: #808080;
+}
+#homeLogo {
+    width: 20%;
+    height: auto;
+    border-radius: 100px;
+}
+nav{
+    margin-bottom: 15px;
+}
+
+#loginLink{
+    color:white;
+}
+#registerLink{
+    color:white;
+}
+#logoutForm{
+    color:white !important;
+}
+#loginLink:hover{
+    color: #808080
+}
+
+footer#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+    
+}
+
+
+/**********************************/
+
+

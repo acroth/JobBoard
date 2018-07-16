@@ -9,40 +9,63 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pay)
-        </th>
-        <th>
-            
-        </th>
-        <th></th>
-    </tr>
+<table id="position" class="table display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pay)
+            </th>
+            <th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pay)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PositionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PositionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PositionID })
-        </td>
-    </tr>
-}
+            </th>
+        </tr>
+    </thead> 
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pay)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
+                </td>
+             
+            </tr>
 
-</table>
+        }
+    </tbody>
+
+   
+
+    </table>
+    @section Scripts{
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#position').DataTable();
+            });
+
+            //$.extend($.fn.dataTable.defaults, {
+            //    columnDefs: [{
+            //        targets:[2]
+            //    }]
+
+            //});
+        </script>
+
+    }
