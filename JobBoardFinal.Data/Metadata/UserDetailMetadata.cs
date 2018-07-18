@@ -20,11 +20,11 @@ namespace JobBoardFinal.Data//.Metadata
         [Display(Name = "Last Name")]
         [StringLength(75, ErrorMessage = "Must be 75 characters or less")]
         public string LastName { get; set; }
-        [Required]
+        //[Required(ErrorMessage ="Resume File is required")]
         [Display(Name = "Resume File")]
         public string ResumeFilename { get; set; }
-
     }
+
     [MetadataType(typeof(UserDetailMetadata))]
     public partial class UserDetail { }
 }

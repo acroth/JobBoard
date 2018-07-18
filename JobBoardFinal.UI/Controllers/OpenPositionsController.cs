@@ -12,7 +12,7 @@ using System.Web.Security;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    //[Authorize (Roles = "Admin,Manager,Employee")]
+    [Authorize (Roles = "Admin,Manager,Employee")]
     public class OpenPositionsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
@@ -22,17 +22,18 @@ namespace JobBoardFinal.UI.Controllers
         {
             if (User.IsInRole("Manager"))
             {
-                string myUserID = User.Identity.GetUserId().ToUpper();
+                string myUserID = User.Identity.GetUserId();
                 var mgrOpenPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position).Where(x => x.Location.ManagerID == myUserID);
                 return View(mgrOpenPositions.ToList());
 
             }
-            else
+            else 
             {
                 var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
                 return View(openPositions.ToList());
 
             }
+
         }
 
         // GET: OpenPositions/Details/5
@@ -56,7 +57,7 @@ namespace JobBoardFinal.UI.Controllers
         {
             if (User.IsInRole("Manager"))
             {
-                string myUserID = User.Identity.GetUserId().ToUpper();
+                string myUserID = User.Identity.GetUserId();
                 var mgrLocations = db.Locations.Where(l => l.ManagerID == myUserID);
                 ViewBag.LocationID = new SelectList(mgrLocations, "LocationID", "City");
                 ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
@@ -86,7 +87,7 @@ namespace JobBoardFinal.UI.Controllers
                     return RedirectToAction("Index");
                 }
 
-                string myUserID = User.Identity.GetUserId().ToUpper();
+                string myUserID = User.Identity.GetUserId();
                 var mgrLocations = db.Locations.Where(l => l.ManagerID == myUserID);
                 ViewBag.LocationID = new SelectList(mgrLocations, "LocationID","City",openPosition.LocationID);
                 ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
@@ -178,16 +179,17 @@ namespace JobBoardFinal.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Apply([Bind(Include = "OpenPositionID,UserID,ApplicationDate,isDeclined,ResumeFilename")] Application app,int openPosition)
         {
-            var myUserID = User.Identity.GetUserId().ToUpper();
+
+            string myUserID = User.Identity.GetUserId();
             app.UserID = myUserID;
             app.OpenPositionID = openPosition;
             app.ApplicationDate = DateTime.Now;
-            app.ResumeFilename = "";
+            app.ResumeFilename = db.UserDetails.Where(ud => ud.UserId == myUserID).SingleOrDefault().ResumeFilename;
             app.IsDeclined = false;
             db.Applications.Add(app);
             db.SaveChanges();
             
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Applications");
         }
 
         protected override void Dispose(bool disposing)

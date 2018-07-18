@@ -4,7 +4,7 @@
     ViewBag.Title = "Openings";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2></h2>
 
 
 
@@ -21,6 +21,18 @@
             </th>
             <th></th>
         </tr>*@
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@Url.Action()
+@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+{
+    <p id="create">
+        <input type="button" class="btn btn-success btn-block" value="Create" onclick="location.href='@Url.Action("Create", "OpenPositions")'" />
+    </p>
+
+}
+
 <div class="row">
     @foreach (var item in Model)
     {
@@ -45,7 +57,8 @@
 
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                @*<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>*@
+                <img id="openingLogo" src="~/Content/Img/Power Button.jpg" />
                 <div class="card-body">
                     <h4 class="card-title">
                         @Html.DisplayFor(modelItem => item.Position.Title)
@@ -77,7 +90,7 @@
                         }
 
                     </p>
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
                     @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) @:|
@@ -85,9 +98,6 @@
 
 
                     }
-                    <p>
-                        @Html.ActionLink("Create New", "Create")
-                    </p>
                 </div>
             </div>
         </div>

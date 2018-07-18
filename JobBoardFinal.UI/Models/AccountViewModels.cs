@@ -69,7 +69,7 @@ namespace JobBoardFinal.UI.Models
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Resume")]
         public string ResumeFilename { get; set; }
 

@@ -14,6 +14,12 @@
         <th>
             Name
         </th>
+        @*TODO: SHOW Position Location*@
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ApplicationDate)
         </th>
@@ -32,7 +38,8 @@
             }
 
         <th>
-            @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)
+            @*@Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)*@
+            @Html.DisplayNameFor(model => model.OpenPosition.Location.City)
         </th>
         <th></th>
     </tr>
@@ -41,17 +48,26 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(model => item.UserDetail.FirstName) @Html.DisplayFor(model => item.UserDetail.LastName)
+                @Html.DisplayFor(model => item.UserDetail.FirstName) 
+                @Html.DisplayFor(model => item.UserDetail.LastName)
+                @*@Html.DisplayFor(model => item.UserDetail.UserId)*@
             </td>
+            <td>
+                @*TODO: SHOW Position Name*@
+                @Html.DisplayFor(model => item.OpenPosition.Position.Title)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicationDate)
             </td>
             <td>
+                
 
                 @Html.DisplayFor(modelItem => item.IsDeclined)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ResumeFilename)
+                @*@Html.DisplayFor(modelItem => item.ResumeFilename)*@
+                <a href="@Url.Content("~/Content/resumes/" + @item.ResumeFilename)" target="_blank">Click to View Document</a>
             </td>
             @if (User.IsInRole("Manager"))
             {
@@ -60,7 +76,7 @@
                 </td>
             }
             <td>
-                @Html.DisplayFor(modelItem => item.OpenPosition.OpenPositionID)
+                @Html.DisplayFor(model => item.OpenPosition.Location.City),@Html.DisplayFor(model => item.OpenPosition.Location.State)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationID }) |

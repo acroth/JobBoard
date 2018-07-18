@@ -11,6 +11,8 @@
     <link href="~/Content/css/modern-business.css" rel="stylesheet">
     <!--My Custom Styles for Navbar and footer-->
     <link href="~/Content/css/NavbarFooterCustom.css" rel="stylesheet" />
+    <!--Main Custom-->
+    <link href="~/Content/css/mainCustom.css" rel="stylesheet" />
     <!--Datatables-->
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!--jQuery-->
@@ -22,7 +24,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a  class="navbar-brand" href="@Url.Action("Index","Index")" >
+            <a  class="navbar-brand" href="@Url.Action("Index","Home")" >
                 <img id="homeLogo" src="~/Content/Img/AR ELECTRONICS.jpg" />
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +44,7 @@
                         </li>
 
                     }
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                     {
                         <li class="nav-item">
                             @Html.ActionLink("Locations", "Index", "Locations", null, new { @class = "nav-item" })
@@ -103,12 +105,12 @@
     @RenderBody()
     <div style="clear:both;"></div>
     <!-- Footer -->
-    <footer id="footer" class="py-5 bg-dark">
+    @*<footer id="footer" class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Alexander Roth 2018</p>
-        </div>
+        </div>*@
         <!-- /.container -->
-    </footer>
+    @*</footer>*@
     <!-- Bootstrap core JavaScript -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

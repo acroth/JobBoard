@@ -79,8 +79,23 @@ namespace JobBoardFinal.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,ResumeFilename")] UserDetail userDetail)
+        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,ResumeFilename")] UserDetail userDetail, HttpPostedFileBase resumeFile)
         {
+            if (resumeFile != null)
+            {
+                string resumeName = resumeFile.FileName;
+                string ext = resumeName.Substring(resumeName.LastIndexOf('.'));
+                string[] goodExts = { ".docx", ".pdf" };
+                if (goodExts.Contains(ext.ToLower()))
+                {
+                    resumeFile.SaveAs(Server.MapPath("~/Content/resumes/" + resumeName));
+                    userDetail.ResumeFilename = resumeName;
+                }
+                db.Entry(userDetail).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(userDetail).State = EntityState.Modified;

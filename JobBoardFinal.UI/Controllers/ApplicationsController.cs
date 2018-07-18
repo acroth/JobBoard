@@ -21,16 +21,18 @@ namespace JobBoardFinal.UI.Controllers
         {
             if (User.IsInRole("Manager"))
             {
-                string myUserID = User.Identity.GetUserId().ToUpper();
+                string myUserID = User.Identity.GetUserId();
                 var mgrApplications = db.Applications.Include(a => a.OpenPosition).Where(a => a.OpenPosition.Location.ManagerID == myUserID);
                 return View(mgrApplications.ToList());               
             }
+
             else if (User.IsInRole("Employee"))
             {
-                string myUserId = User.Identity.GetUserId().ToUpper();
-                var employeeApplications = db.Applications.Where(x => x.UserID == myUserId).Include(a => a.OpenPosition);
+                string myUserId = User.Identity.GetUserId();
+                var employeeApplications = db.Applications.Where(x => x.UserID == myUserId).Include(a => a.OpenPosition).Include(a => a.UserDetail);
                 return View(employeeApplications.ToList());
             }
+
             else
             {
                 var applications = db.Applications.Include(a => a.OpenPosition);

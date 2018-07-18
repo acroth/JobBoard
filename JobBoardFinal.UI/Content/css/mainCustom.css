@@ -1,0 +1,33 @@
+﻿img#openingLogo {
+    vertical-align: middle;
+    border-bottom:double;
+    width: 50%;
+    margin-left: 25%;
+}
+
+p#create{
+    margin-left:20em;
+    margin-right: 20em;
+    margin-bottom: 2em;
+}
+
+div#contact {
+    margin-left: 57%;
+    background: rgba(25, 25, 25,.85);
+    border-radius: 25px;
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+div#register {
+    margin-left: 14%;
+    background: rgba(25, 25, 25,.85);
+    border-radius: 25px;
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.col-md-offset-2.col-md-10 {
+    margin: 2em;
+    padding-bottom:2em;
+}

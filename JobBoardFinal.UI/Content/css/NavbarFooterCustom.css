@@ -47,7 +47,9 @@ nav{
     color:white !important;
 }
 #loginLink:hover{
-    color: #808080
+    color: #808080;
+    text-decoration:none;
+    
 }
 
 footer#footer {

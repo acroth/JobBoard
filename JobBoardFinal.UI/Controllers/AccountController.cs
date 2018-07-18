@@ -147,10 +147,27 @@ namespace JobBoardFinal.UI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model,HttpPostedFileBase resumeFile)
         {
             if (ModelState.IsValid)
             {
+                string resumeName = "noResume.docx";
+                if (resumeFile != null)
+                {
+                    resumeName = resumeFile.FileName;
+                    string ext = resumeName.Substring(resumeName.LastIndexOf('.'));
+                    string[] goodExts = { ".docx", ".pdf" };
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        resumeName = Guid.NewGuid() + ext;
+                        resumeFile.SaveAs(Server.MapPath("~/Content/resumes/" + resumeName));
+                    }
+                    else
+                    {
+                        resumeName = "noResume.docx";
+                    }
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -159,7 +176,7 @@ namespace JobBoardFinal.UI.Controllers
                     newUserDeets.UserId = user.Id;
                     newUserDeets.FirstName = model.FirstName;
                     newUserDeets.LastName = model.LastName;
-                    newUserDeets.ResumeFilename = model.ResumeFilename;//TODO: handle file upload
+                    newUserDeets.ResumeFilename = resumeName;
 
                     JobBoardEntities db = new JobBoardEntities();
                     db.UserDetails.Add(newUserDeets);
