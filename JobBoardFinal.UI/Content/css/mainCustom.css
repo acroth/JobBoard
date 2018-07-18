@@ -31,3 +31,43 @@ div#register {
     margin: 2em;
     padding-bottom:2em;
 }
+label#password {
+    margin-right: 1.5em;
+}
+
+h1#indexHead{
+    color: white;
+    background:rgba(25, 25, 25,.85);
+    border-radius: 10px;
+    text-align:center;
+    border:double;
+    border-color:white;
+
+
+}
+div#about {
+    border: double;
+    border-color: white;
+    border-radius:2px;
+    background:rgba(25, 25, 25,.85);
+    color: white;
+}
+div#register {
+    border: double;
+    border-color: white;
+}
+div#login{
+    border:double;
+    border-color:white;
+
+}
+img.img-fluid.rounded.mb-4 {
+    padding-top: 1em;
+}
+img#targetLady{
+    width:100%;
+    margin-top:1em;
+    border:ridge;
+
+    
+}

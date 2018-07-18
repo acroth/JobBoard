@@ -6,6 +6,7 @@
 
 body {
     padding-top: 124px;
+    padding-bottom:124px;
     background-image: url('../Img/technology-blue-tech-background-with-shining-abstract_29865-24.jpg');
     background-size: cover;
     background-attachment: fixed;  
@@ -14,6 +15,7 @@ body {
 @media (min-width: 992px) {
   body {
     padding-top: 124px;   
+    padding-bottom:124px;
   }
 }
 

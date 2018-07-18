@@ -1,48 +1,58 @@
-﻿@section Styles{
-    
-    }
+﻿@model JobBoardFinal.UI.Models.ContactFormViewModel
+
 
 <div class="row">
     <!-- Map Column -->
     <!-- Contact Details Column -->
-<!-- /.row -->
-<!-- Contact Form -->
-<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-<div class="row">
-    <div id="contact" class="col-lg-8 mb-4">
-        <h3>Send us a Message</h3>
-        <form name="sentMessage" id="contactForm" novalidate>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Full Name:</label>
-                    <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-                    <p class="help-block"></p>
+    <!-- /.row -->
+    <!-- Contact Form -->
+    <div class="row">
+        <div id="contact" class="col-lg-8 mb-4">
+            <h3>Send us a Message</h3>
+            <form name="sentMessage" id="contactForm" method="post" action="~/Home/Contact" >
+                @Html.AntiForgeryToken()
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @*<label>Full Name:</label>*@
+                        @Html.LabelFor(model => model.Name)
+                        @*<input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">*@
+                        @Html.EditorFor(model => model.Name, new { @class = "form-control", @id = "name" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                        <p class="help-block"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Phone Number:</label>
-                    <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @*<label>Phone Number:</label>*@
+                        @Html.LabelFor(model => model.Email)
+                        @Html.EditorFor(model => model.Email, new { @class = "form-control", @id = "phone", @type = "email" })
+                        @Html.ValidationMessageFor(model => model.Email)
+
+                        @*<input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">*@
+                    </div>
                 </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Email Address:</label>
-                    <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @*<label>Email Address:</label>*@
+                        @Html.LabelFor(model => model.Subject)
+                        @Html.EditorFor(model => model.Subject, new { @class = "form-control", @id = "message" })
+                        @Html.ValidationMessageFor(model => model.Subject)
+                        @*<input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">*@
+                    </div>
                 </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Message:</label>
-                    <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                <div class="control-group form-group">
+                    @*<div class="controls">
+                        <label>Message:</label>*@
+                    @Html.LabelFor(model => model.Subject)
+                    @Html.TextAreaFor(model => model.Message, new { @rows = "10", @cols = "100", @class = "form-control", id = "message" })
+                    @*<textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>*@
                 </div>
-            </div>
-            <div id="success"></div>
-            <!-- For success/fail messages -->
-            <button type="submit" class="btn btn-primary id="sendMessageButton"><span class="glyphicon glyphicon-envelope"></span>Send Message</button>
+        <div id="success"></div>
+        <!-- For success/fail messages -->
+        <button type="submit" class="btn btn-primary id=" sendMessageButton"><span class="glyphicon glyphicon-envelope"></span>Send Message</button>
         </form>
     </div>
 </div>
 <!-- /.row -->
-    </div>
+    @*</div>*@
 <!-- /.container -->
