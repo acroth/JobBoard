@@ -11,12 +11,13 @@ using Microsoft.AspNet.Identity;
 
 namespace JobBoardFinal.UI.Controllers
 {
-    [Authorize(Roles = "Admin,Manager,Employee")]
+    [Authorize(Roles ="Admin,Manager,Employee")]
     public class ApplicationsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: Applications
+        [Authorize(Roles = "Admin,Manager,Employee")]
         public ActionResult Index()
         {
             if (User.IsInRole("Manager"))
@@ -41,11 +42,13 @@ namespace JobBoardFinal.UI.Controllers
 
         }
 
-     
 
-	
+
+
 
         // GET: Applications/Details/5
+        [Authorize(Roles = "Admin,Manager")]
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -61,6 +64,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: Applications/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID");
@@ -86,6 +90,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: Applications/Edit/5
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -119,6 +124,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: Applications/Delete/5
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

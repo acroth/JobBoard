@@ -1,12 +1,12 @@
 ﻿img#openingLogo {
     vertical-align: middle;
-    border-bottom:double;
+    border-bottom: double;
     width: 50%;
     margin-left: 25%;
 }
 
-p#create{
-    margin-left:20em;
+p#create {
+    margin-left: 20em;
     margin-right: 20em;
     margin-bottom: 2em;
 }
@@ -19,6 +19,7 @@ div#contact {
     margin-top: 2em;
     margin-bottom: 2em;
 }
+
 div#register {
     margin-left: 14%;
     background: rgba(25, 25, 25,.85);
@@ -27,47 +28,205 @@ div#register {
     margin-top: 2em;
     margin-bottom: 2em;
 }
+
 .col-md-offset-2.col-md-10 {
     margin: 2em;
-    padding-bottom:2em;
+    padding-bottom: 2em;
 }
+
 label#password {
     margin-right: 1.5em;
 }
 
-h1#indexHead{
+h1#indexHead {
     color: white;
-    background:rgba(25, 25, 25,.85);
+    background: rgba(25, 25, 25,.85);
     border-radius: 10px;
-    text-align:center;
-    border:double;
-    border-color:white;
-
-
+    text-align: center;
+    border: double;
+    border-color: white;
 }
+
 div#about {
     border: double;
     border-color: white;
-    border-radius:2px;
-    background:rgba(25, 25, 25,.85);
+    border-radius: 2px;
+    background: rgba(25, 25, 25,.85);
     color: white;
 }
+
 div#register {
     border: double;
     border-color: white;
 }
-div#login{
-    border:double;
-    border-color:white;
 
+div#login {
+    border: double;
+    border-color: white;
+}
+div.container#login{
+    border:none;
 }
 img.img-fluid.rounded.mb-4 {
     padding-top: 1em;
 }
-img#targetLady{
-    width:100%;
-    margin-top:1em;
-    border:ridge;
 
-    
+img#targetLady {
+    width: 100%;
+    margin-top: 1em;
+    border: ridge;
 }
+
+.card-body {
+    overflow-y: auto;
+}
+
+img#teamPhotos {
+    width: 100%;
+}
+
+div.card h-100.text-center {
+    border: double;
+    border-color: white;
+    border-radius: 2px;
+    background: rgba(25, 25, 25,.85);
+    color: white;
+}
+
+div#cardBody {
+    background: rgba(25, 25, 25,.85);
+    color: white;
+    border: double;
+    border-radius: .25em;
+}
+h2#team {
+    color: white;
+    background: rgba(25, 25, 25,.85);
+    border-radius: 10px;
+    text-align: center;
+    border: double;
+    border-color: white;
+    margin: 1em;
+}
+div#crudForm {
+    background: rgba(25, 25, 25,.85);
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-right: 20em;
+    margin-left: 20em;
+    padding: 2em;
+    border-radius: 1em;
+    border: double;
+}
+p#crudForm{
+        background: rgba(25, 25, 25,.85);
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-right: 20em;
+    margin-left: 20em;
+    padding: 2em;
+    border-radius: 1em;
+    border: double;
+
+}
+/*begin locations DataTable*/
+#locations_wrapper{
+    color: white;
+    background: rgba(25, 25, 25,.9);
+    margin-left: 10em;
+    margin-right: 10em;
+    padding: 3em;
+    border: double;
+    border-radius: 1em;
+}
+thead{
+    color:white;
+}
+div#locations_length{
+    color:white;
+}
+
+div#locations_filter{
+    color:white;
+}
+div#locations_info{
+    color:white;
+}
+div#locations_paginate{
+    color:white;
+}
+a#locations_previous{
+    color:white !important;
+}
+a#locations_next{
+    color:white !important;
+}
+/*end locations DataTable*/
+/*begin positions DataTable*/
+#position_wrapper{
+    color: white;
+    background: rgba(25, 25, 25,.9);
+    margin-left: 10em;
+    margin-right: 10em;
+    padding: 3em;
+    border: double;
+    border-radius: 1em;
+}
+thead{
+    color:white;
+}
+div#position_length{
+    color:white;
+}
+
+div#position_filter{
+    color:white;
+}
+div#position_info{
+    color:white;
+}
+div#position_paginate{
+    color:white;
+}
+a#position_previous{
+    color:white !important;
+}
+a#position_next{
+    color:white !important;
+}
+/*end positions DataTable*/
+/*begin applications DataTable*/
+#application_wrapper{
+    color: white;
+    background: rgba(25, 25, 25,.9);
+    margin-left: 10em;
+    margin-right: 10em;
+    padding: 3em;
+    border: double;
+    border-radius: 1em;
+}
+thead{
+    color:white;
+}
+div#application_length{
+    color:white;
+}
+
+div#application_filter{
+    color:white;
+}
+div#application_info{
+    color:white;
+}
+div#application_paginate{
+    color:white;
+}
+a#application_previous{
+    color:white !important;
+}
+a#application_next{
+    color:white !important;
+}
+/*end locations DataTable*/

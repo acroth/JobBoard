@@ -190,7 +190,6 @@ namespace JobBoardFinal.UI.Controllers
 
                             UserManager.AddToRole(user.Id, "Manager");
 
-                            //TODO FIX THIS!!! Role Logins
 
                         }
                         else

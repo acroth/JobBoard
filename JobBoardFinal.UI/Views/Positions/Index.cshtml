@@ -1,17 +1,16 @@
 ﻿@model IEnumerable<JobBoardFinal.Data.Position>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
 </p>
 <table id="position" class="table display">
     <thead>
+
+
         <tr>
+
+
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -21,11 +20,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Pay)
             </th>
-            <th>
+            <th>                           
+                    <input type="button" class="btn btn-success" value="Create" onclick="location.href='@Url.Action("Create", "Positions")'" />                
+                @*@Html.ActionLink("Create", "Create")*@
 
             </th>
         </tr>
-    </thead> 
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
@@ -40,32 +41,31 @@
                     @Html.DisplayFor(modelItem => item.Pay)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) @:|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PositionID }) @:|
+
+
+                    }
+
+
                 </td>
-             
+
             </tr>
 
         }
     </tbody>
 
-   
 
-    </table>
-    @section Scripts{
-        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#position').DataTable();
-            });
 
-            //$.extend($.fn.dataTable.defaults, {
-            //    columnDefs: [{
-            //        targets:[2]
-            //    }]
+</table>
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#position').DataTable();
+        });
+    </script>
 
-            //});
-        </script>
-
-    }
+}

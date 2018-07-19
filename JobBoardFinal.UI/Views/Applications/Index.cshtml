@@ -1,89 +1,100 @@
 ﻿@model IEnumerable<JobBoardFinal.Data.Application>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        @*TODO: SHOW Position Location*@
-
-
-        <th>
-            @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeclined)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </th>
-
-        @if (User.IsInRole("Manager"))
-            {
-            <th>
-                @Html.DisplayNameFor(model => model.ManagerNotes)
-            </th>
-            }
-
-        <th>
-            @*@Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)*@
-            @Html.DisplayNameFor(model => model.OpenPosition.Location.City)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table" id="application">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(model => item.UserDetail.FirstName) 
-                @Html.DisplayFor(model => item.UserDetail.LastName)
-                @*@Html.DisplayFor(model => item.UserDetail.UserId)*@
-            </td>
-            <td>
-                @*TODO: SHOW Position Name*@
-                @Html.DisplayFor(model => item.OpenPosition.Position.Title)
-            </td>
+            <th>
+                Name
+            </th>
+            @*TODO: SHOW Position Location*@
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationDate)
-            </td>
-            <td>
-                
 
-                @Html.DisplayFor(modelItem => item.IsDeclined)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.ResumeFilename)*@
-                <a href="@Url.Content("~/Content/resumes/" + @item.ResumeFilename)" target="_blank">Click to View Document</a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeclined)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResumeFilename)
+            </th>
+
             @if (User.IsInRole("Manager"))
             {
-                <td>
-                    @Html.DisplayFor(modelItem => item.ManagerNotes)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManagerNotes)
+                </th>
             }
-            <td>
-                @Html.DisplayFor(model => item.OpenPosition.Location.City),@Html.DisplayFor(model => item.OpenPosition.Location.State)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ApplicationID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationID })
-            </td>
-        </tr>
-    }
 
+            <th>
+                @*@Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)*@
+                @Html.DisplayNameFor(model => model.OpenPosition.Location.City)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.UserDetail.FirstName)
+                    @Html.DisplayFor(model => item.UserDetail.LastName)
+                    @*@Html.DisplayFor(model => item.UserDetail.UserId)*@
+                </td>
+                <td>
+                    @*TODO: SHOW Position Name*@
+                    @Html.DisplayFor(model => item.OpenPosition.Position.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+                <td>
+
+
+                    @Html.DisplayFor(modelItem => item.IsDeclined)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.ResumeFilename)*@
+                    <a href="@Url.Content("~/Content/resumes/" + @item.ResumeFilename)" target="_blank">Click to View Document</a>
+                </td>
+                @if (User.IsInRole("Manager"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManagerNotes)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(model => item.OpenPosition.Location.City),@Html.DisplayFor(model => item.OpenPosition.Location.State)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationID }) @:|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationID })
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#application').DataTable();
+        });
+    </script>
+
+}
+
+

@@ -93,7 +93,6 @@
                     @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
-                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) @:|
                     @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID })
 
 

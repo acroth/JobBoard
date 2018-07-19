@@ -14,7 +14,8 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         @*<label>Full Name:</label>*@
-                        @Html.LabelFor(model => model.Name)
+                        @Html.LabelFor(model => model.Name)<br />
+
                         @*<input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">*@
                         @Html.EditorFor(model => model.Name, new { @class = "form-control", @id = "name" })
                         @Html.ValidationMessageFor(model => model.Email)
@@ -24,7 +25,7 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         @*<label>Phone Number:</label>*@
-                        @Html.LabelFor(model => model.Email)
+                        @Html.LabelFor(model => model.Email)<br />
                         @Html.EditorFor(model => model.Email, new { @class = "form-control", @id = "phone", @type = "email" })
                         @Html.ValidationMessageFor(model => model.Email)
 
@@ -34,7 +35,7 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         @*<label>Email Address:</label>*@
-                        @Html.LabelFor(model => model.Subject)
+                        @Html.LabelFor(model => model.Subject)<br />
                         @Html.EditorFor(model => model.Subject, new { @class = "form-control", @id = "message" })
                         @Html.ValidationMessageFor(model => model.Subject)
                         @*<input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">*@
@@ -43,7 +44,7 @@
                 <div class="control-group form-group">
                     @*<div class="controls">
                         <label>Message:</label>*@
-                    @Html.LabelFor(model => model.Subject)
+                    @Html.LabelFor(model => model.Message)<br />
                     @Html.TextAreaFor(model => model.Message, new { @rows = "10", @cols = "100", @class = "form-control", id = "message" })
                     @*<textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>*@
                 </div>

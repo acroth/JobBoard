@@ -18,6 +18,7 @@ namespace JobBoardFinal.UI.Controllers
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: OpenPositions
+        [Authorize(Roles = "Admin,Manager,Employee")]
         public ActionResult Index()
         {
             if (User.IsInRole("Manager"))
@@ -37,6 +38,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: OpenPositions/Details/5
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -53,6 +55,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: OpenPositions/Create
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Create()
         {
             if (User.IsInRole("Manager"))
@@ -112,6 +115,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: OpenPositions/Edit/5
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -149,6 +153,7 @@ namespace JobBoardFinal.UI.Controllers
         }
 
         // GET: OpenPositions/Delete/5
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -1,13 +1,10 @@
 ﻿@model JobBoardFinal.UI.Models.ContactFormViewModel
 
-@{
-    ViewBag.Title = "ContactConfirm";
-}
 
-<h2>ContactConfirm</h2>
 
-<div>
-    <h4>ContactFormViewModel</h4>
+<div id="crudForm">
+    <h2>Email Confirmation</h2>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,15 +38,6 @@
         <dd>
             @Html.DisplayFor(model => model.Subject)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeStamp)
-        </dd>
-
     </dl>
 </div>
 <p>

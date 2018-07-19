@@ -19,6 +19,7 @@ namespace JobBoardFinal.Data//.Metadata
         public int UserID { get; set; }
         [Required]
         [Display(Name = "Date Applied")]
+        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         public System.DateTime ApplicationDate { get; set; }
         [Required]
         [Display(Name = "Declined?")]
