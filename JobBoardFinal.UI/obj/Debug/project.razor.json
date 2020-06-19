@@ -1,0 +1,19 @@
+{
+  "FilePath": "c:\\Users\\Student\\Documents\\Visual Studio 2015\\Projects\\JobBoardFinal\\src\\JobBoardFinal.UI\\JobBoardFinal.UI.csproj",
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 703
+  },
+  "RootNamespace": null,
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}

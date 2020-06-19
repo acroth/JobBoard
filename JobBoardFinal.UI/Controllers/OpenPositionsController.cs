@@ -24,7 +24,8 @@ namespace JobBoardFinal.UI.Controllers
             if (User.IsInRole("Manager"))
             {
                 string myUserID = User.Identity.GetUserId();
-                var mgrOpenPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position).Where(x => x.Location.ManagerID == myUserID);
+                var mgrOpenPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position)
+                    .Where(x => x.Location.ManagerID == myUserID);
                 return View(mgrOpenPositions.ToList());
 
             }
@@ -127,7 +128,7 @@ namespace JobBoardFinal.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City", openPosition.LocationID);
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City", openPosition.LocationID); 
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }
